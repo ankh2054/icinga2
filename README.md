@@ -30,7 +30,11 @@ This build is automated by push for the git-repo. Just crawl it via:
 
 Start a new container and bind to host's port 80
 
-    docker run -p 80:80 -t jordan/icinga2:latest
+    docker run --name icinga2 --expose 80  \
+    -d -e "VIRTUAL_HOST=supermon.eos42.io" \
+    -e "LETSENCRYPT_HOST=supermon.eos42.io" \
+    -e "LETSENCRYPT_EMAIL=charles@eos42.io" \
+    jordan/icinga2:latest
 
 ## Icinga Web 2
 
